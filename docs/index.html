@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RustPHP Documentation</title>
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<style>
+:root {
+  --bg: #05070d;
+  --panel: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22d3ee;
+  --accent2: #8b5cf6;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, var(--bg));
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 40px;
+  margin: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.5);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px;
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin: 20px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+h2 {
+  color: white;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: black;
+  font-weight: bold;
+}
+
+/* CODE */
+pre {
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🦀 RustPHP</h1>
+  <p>High-performance PHP extension powered by Rust</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#requirements">Requirements</a>
+  <a href="#install">Install</a>
+  <a href="#build">Build</a>
+  <a href="#composer">Composer</a>
+  <a href="#example">Example</a>
+  <a href="#run">Run</a>
+</nav>
+
+<div class="container">
+
+<!-- ABOUT -->
+<div class="card" id="about">
+<span class="tag">OVERVIEW</span>
+<h2>What is RustPHP?</h2>
+<p>
+RustPHP is a PHP extension written in Rust that allows you to execute high-performance native Rust code inside PHP applications.
+</p>
+</div>
+
+<!-- REQUIREMENTS -->
+<div class="card" id="requirements">
+<span class="tag">SYSTEM</span>
+<h2>Requirements</h2>
+<pre><code class="language-bash">
+PHP 8.2+
+Rust (cargo, rustc)
+php-cli
+php-config
+php-dev
+</code></pre>
+</div>
+
+<!-- INSTALL -->
+<div class="card" id="install">
+<span class="tag">INSTALL</span>
+<h2>Install Dependencies</h2>
+<pre><code class="language-bash">
+# Debian / Ubuntu
+apt install php-dev
+
+# Arch
+pacman -S php
+
+# Fedora
+dnf install php-devel
+
+# macOS
+brew install php
+</code></pre>
+</div>
+
+<!-- BUILD -->
+<div class="card" id="build">
+<span class="tag">BUILD</span>
+<h2>Build PHP from Source</h2>
+
+<pre><code class="language-bash">
+git clone https://github.com/php/php-src.git
+cd php-src
+
+git checkout PHP-8.2
+
+./buildconf
+
+PREFIX="$HOME/build/php"
+
+./configure \
+  --prefix="$PREFIX" \
+  --enable-debug \
+  --disable-all \
+  --disable-cgi
+
+make -j "$(nproc)"
+make install
+</code></pre>
+
+<p>Output:</p>
+<pre><code class="language-bash">
+PHP: $HOME/build/php/bin/php
+php-config: $HOME/build/php/bin/php-config
+</code></pre>
+</div>
+
+<!-- COMPOSER -->
+<div class="card" id="composer">
+<span class="tag">COMPOSER</span>
+<h2>Install Package</h2>
+
+<pre><code class="language-json">
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Famous-Coder36/RustPHP.git"
+    }
+  ],
+  "require": {
+    "famouscoder/rustphp": "*"
+  }
+}
+</code></pre>
+
+<pre><code class="language-bash">
+composer require famouscoder/rustphp
+
+cargo build --manifest-path=vendor/famouscoder/rustphp/Cargo.toml
+</code></pre>
+</div>
+
+<!-- EXAMPLE -->
+<div class="card" id="example">
+<span class="tag">EXAMPLE</span>
+<h2>test.php</h2>
+
+<pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
+Engine::println("Hello from RustPHP");
+</code></pre>
+</div>
+
+<!-- RUN -->
+<div class="card" id="run">
+<span class="tag">RUN</span>
+<h2>Execute Extension</h2>
+
+<pre><code class="language-bash">
+php -d extension=./vendor/famouscoder/rustphp/target/debug/libssalom.so test.php
+</code></pre>
+</div>
+
+</div>
+
+<footer>
+🦀 RustPHP • Built with Rust + PHP • Dark Edition
+</footer>
+
+<script>
+hljs.highlightAll();
+</script>
+
+</body>
+  </html>
