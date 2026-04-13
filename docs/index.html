@@ -1,169 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RustPHP Documentation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RustPHP - Full Documentation</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-family: Arial, sans-serif;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
 
-body {
-    background: linear-gradient(135deg, #000000, #001a33);
-    color: white;
-}
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+    }
 
-/* NAV */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 40px;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      color: #38bdf8;
+    }
 
-nav h1 {
-    color: #4da3ff;
-    font-size: 20px;
-}
+    header p {
+      color: #94a3b8;
+      margin-top: 10px;
+    }
 
-nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: 0.3s;
-}
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background: #0b1220;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid #1f2937;
+    }
 
-nav a:hover {
-    color: #4da3ff;
-}
+    nav a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 14px;
+    }
 
-/* HERO */
-.hero {
-    padding-top: 120px;
-    text-align: center;
-    padding-bottom: 80px;
-}
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.hero h2 {
-    font-size: 55px;
-    color: #4da3ff;
-}
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
 
-.hero p {
-    max-width: 700px;
-    margin: 20px auto;
-    opacity: 0.8;
-}
+    h2 {
+      color: #38bdf8;
+    }
 
-.btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
-    background: #4da3ff;
-    color: black;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    pre {
+      background: #0b1220;
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
+      color: #22c55e;
+    }
 
-.btn:hover {
-    background: white;
-}
+    .tag {
+      display: inline-block;
+      background: #2563eb;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
 
-/* SECTIONS */
-section {
-    max-width: 1000px;
-    margin: auto;
-    padding: 60px 20px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(77,163,255,0.2);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #4da3ff;
-}
-
-h2 {
-    color: #4da3ff;
-    margin-bottom: 15px;
-}
-
-pre {
-    background: #0b1a2a;
-    padding: 15px;
-    border-radius: 10px;
-    overflow-x: auto;
-    margin-top: 10px;
-}
-
-.badge {
-    display: inline-block;
-    padding: 5px 10px;
-    background: #4da3ff;
-    color: black;
-    border-radius: 6px;
-    font-size: 12px;
-}
-
-footer {
-    text-align: center;
-    padding: 40px;
-    opacity: 0.6;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-</style>
-
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      border-top: 1px solid #1f2937;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
+<header>
+  <h1>🦀 RustPHP</h1>
+  <p>PHP + Rust Engine Integration Framework</p>
+</header>
+
 <nav>
-    <h1>RustPHP</h1>
-    <div>
-        <a href="#home">Home</a>
-        <a href="#install">Install</a>
-        <a href="#usage">Usage</a>
-        <a href="#build">Build</a>
-    </div>
+  <a href="#intro">Intro</a>
+  <a href="#requirements">Requirements</a>
+  <a href="#install">Install</a>
+  <a href="#build">Build PHP</a>
+  <a href="#composer">Composer</a>
+  <a href="#example">Example</a>
+  <a href="#run">Run</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero" id="home">
-    <h2>RustPHP Engine</h2>
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="card" id="intro">
+    <span class="tag">About</span>
+    <h2>RustPHP nima?</h2>
     <p>
-        Rust power bilan yozilgan PHP engine. Fast, secure va modern architecture.
+      RustPHP — bu PHP extension bo‘lib, Rust yordamida yuqori performance
+      engine yaratish uchun ishlatiladi. PHP ichida Rust funksiyalarini ishlatish mumkin.
     </p>
-    <button class="btn" onclick="document.getElementById('install').scrollIntoView()">Get Started</button>
-</div>
+  </div>
 
-<!-- INSTALL -->
-<section id="install">
-    <h2>📦 Composer Installation</h2>
+  <!-- REQUIREMENTS -->
+  <div class="card" id="requirements">
+    <span class="tag">System</span>
+    <h2>Requirements</h2>
+    <pre>
+• PHP 8.2+
+• Rust (cargo, rustc)
+• php-cli
+• php-config
+• php-dev (headers)
+    </pre>
+  </div>
 
-    <div class="card">
-        <span class="badge">composer.json</span>
-        <pre>{
+  <!-- INSTALL -->
+  <div class="card" id="install">
+    <span class="tag">Install</span>
+    <h2>PHP Dev o‘rnatish</h2>
+    <pre>
+# Debian / Ubuntu
+apt install php-dev
+
+# Arch
+pacman -S php
+
+# Fedora
+dnf install php-devel
+
+# macOS
+brew install php
+    </pre>
+  </div>
+
+  <!-- BUILD -->
+  <div class="card" id="build">
+    <span class="tag">Build</span>
+    <h2>PHP source build</h2>
+    <pre>
+git clone https://github.com/php/php-src.git
+cd php-src
+
+git checkout PHP-8.2
+
+./buildconf
+
+PREFIX="$HOME/build/php"
+
+./configure \
+  --prefix="$PREFIX" \
+  --enable-debug \
+  --disable-all \
+  --disable-cgi
+
+make -j "$(nproc)"
+make install
+    </pre>
+
+    <p>📍 Output:</p>
+    <pre>
+PHP: $HOME/build/php/bin/php
+php-config: $HOME/build/php/bin/php-config
+    </pre>
+  </div>
+
+  <!-- COMPOSER -->
+  <div class="card" id="composer">
+    <span class="tag">Composer</span>
+    <h2>Install via Composer</h2>
+    <pre>
+{
   "repositories": [
     {
       "type": "vcs",
@@ -173,82 +200,46 @@ footer {
   "require": {
     "famouscoder/rustphp": "*"
   }
-}</pre>
-    </div>
+}
+    </pre>
 
-    <div class="card">
-        <span class="badge">Command</span>
-        <pre>composer require famouscoder/rustphp</pre>
-    </div>
-</section>
+    <pre>
+composer require famouscoder/rustphp
+    </pre>
 
-<!-- USAGE -->
-<section id="usage">
-    <h2>🧪 Usage Example</h2>
+    <pre>
+cargo build --manifest-path=vendor/famouscoder/rustphp/Cargo.toml
+    </pre>
+  </div>
 
-    <div class="card">
-        <pre>&lt;?php
+  <!-- EXAMPLE -->
+  <div class="card" id="example">
+    <span class="tag">Example</span>
+    <h2>test.php</h2>
+    <pre>
+<?php
 require "vendor/autoload.php";
 
 use RustPHP\Engine;
 
-Engine::println("salom");
-</pre>
-    </div>
+Engine::println("Hello");
+    </pre>
+  </div>
 
-    <div class="card">
-        <h2>▶️ Run</h2>
-        <pre>php -d extension=./vendor/famouscoder/rustphp/target/debug/libssalom.so test.php</pre>
-    </div>
-</section>
+  <!-- RUN -->
+  <div class="card" id="run">
+    <span class="tag">Run</span>
+    <h2>Run project</h2>
+    <pre>
+php -d extension=./vendor/famouscoder/rustphp/target/debug/libssalom.so test.php
+    </pre>
+  </div>
 
-<!-- BUILD -->
-<section id="build">
-    <h2>🛠 Build System</h2>
-
-    <div class="card">
-        <h3>⚙️ PHP Requirements</h3>
-        <ul>
-            <li>PHP 8.2+</li>
-            <li>PHP CLI</li>
-            <li>php-dev headers</li>
-            <li>php-config binary</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>🐧 Install deps</h3>
-        <pre># Debian
-apt install php-dev
-
-# Arch
-pacman -S php
-
-# Fedora
-dnf install php-devel</pre>
-    </div>
-
-    <div class="card">
-        <h3>🧱 Build PHP (advanced)</h3>
-        <pre>git clone https://github.com/php/php-src.git
-cd php-src
-git checkout PHP-8.1
-
-./buildconf
-
-PREFIX="$HOME/build/php"
-./configure --prefix="$PREFIX" \
-    --enable-debug \
-    --disable-all --disable-cgi
-
-make -j$(nproc)
-make install</pre>
-    </div>
-</section>
+</div>
 
 <footer>
-    © 2026 RustPHP • Built with Rust + PHP • Dark Edition
+  🦀 RustPHP Documentation Site • Made for developers
 </footer>
 
 </body>
-  </html>
+</html>
