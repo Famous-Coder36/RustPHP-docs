@@ -14,45 +14,51 @@ body{
   font-family:system-ui;
   background:#0e1621;
   color:#e6e6e6;
-  display:flex;
 }
 
-/* SIDEBAR */
-.sidebar{
-  width:260px;
-  height:100vh;
-  position:fixed;
+/* TOP BAR */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
   background:#111a27;
-  border-right:1px solid #1f2a3a;
-  padding:70px 20px 20px 20px; /* FIX: space for ☰ button */
-  overflow-y:auto;
+  border-bottom:1px solid #1f2a3a;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  flex-wrap:wrap;
 }
 
-.sidebar h2{
+.logo{
   color:#2ea6ff;
-  margin:0;
-  padding-left:8px;
+  font-weight:bold;
+  font-size:18px;
 }
 
-.sidebar a{
-  display:block;
-  padding:10px;
+.nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.nav a{
   color:#cbd5e1;
   text-decoration:none;
+  padding:6px 10px;
   border-radius:6px;
-  margin-bottom:6px;
 }
 
-.sidebar a:hover{
+.nav a:hover{
   background:#1b2a3d;
   color:white;
 }
 
 /* CONTENT */
 .content{
-  margin-left:260px;
-  padding:30px;
-  width:100%;
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
 }
 
 .card{
@@ -63,7 +69,6 @@ body{
   margin-bottom:20px;
 }
 
-/* TAG */
 .tag{
   display:inline-block;
   padding:4px 10px;
@@ -74,55 +79,25 @@ body{
   font-weight:bold;
 }
 
-/* CODE FIX (MUHIM!) */
 pre{
   background:#0b1220;
   padding:15px;
   border-radius:10px;
-  overflow-x:auto;   /* FIX: horizontal scroll */
-  white-space:pre;   /* FIX: full code ko‘rinadi */
+  overflow:auto;
 }
 
-/* ☰ BUTTON FIX */
-.menu-btn{
-  position:fixed;
-  top:12px;
-  left:12px;
-  font-size:26px;
-  background:#111a27;
-  color:#2ea6ff;
-  border:1px solid #1f2a3a;
-  padding:6px 10px;
-  border-radius:8px;
-  z-index:9999; /* FIX: always top */
-  cursor:pointer;
-}
-
-/* TITLE */
 .title{
-  font-size:26px;
+  font-size:28px;
   color:#2ea6ff;
   margin-bottom:10px;
 }
 
 /* MOBILE */
-@media (max-width:768px){
-
-  body{ display:block; }
-
-  .sidebar{
-    transform:translateX(-100%);
-    transition:0.3s;
-    z-index:999;
-  }
-
-  .sidebar.open{
-    transform:translateX(0);
-  }
-
-  .content{
-    margin-left:0;
-    padding:20px;
+@media (max-width:600px){
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
   }
 }
 </style>
@@ -130,31 +105,28 @@ pre{
 
 <body>
 
-<!-- ☰ BUTTON -->
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-  <h2>🦀 RustPHP</h2>
-
-  <a href="index.html">Home</a>
-  <a href="#println">println()</a>
-  <a href="#output">output()</a>
-  <a href="#explode">explode()</a>
+<div class="topbar">
+  <div class="logo">🦀 RustPHP</div>
+  <div class="nav">
+    <a href="#home">Home</a>
+    <a href="#println">println</a>
+    <a href="#output">output</a>
+    <a href="#explode">explode</a>
+  </div>
 </div>
 
-<!-- CONTENT -->
 <div class="content">
 
-<div class="card">
+<div class="card" id="home">
   <div class="title">RustPHP Functions</div>
-  <p>High-performance PHP extension powered by Rust engine.</p>
+  <p>High-performance PHP extension functions powered by Rust engine.</p>
 </div>
 
-<!-- PRINTLN -->
 <div class="card" id="println">
 <span class="tag">FUNCTION</span>
 <h2>println()</h2>
+
+<p>Console output function.</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -164,12 +136,19 @@ use RustPHP\Engine;
 
 Engine::println("Hello RustPHP");
 </code></pre>
+
+<p><b>Output:</b></p>
+
+<pre><code>
+Hello RustPHP
+</code></pre>
 </div>
 
-<!-- OUTPUT -->
 <div class="card" id="output">
 <span class="tag">FUNCTION</span>
 <h2>output()</h2>
+
+<p>File or raw output renderer.</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -177,18 +156,27 @@ require "vendor/autoload.php";
 
 use RustPHP\Engine;
 
-// file output
 Engine::output("hello.txt");
+</code></pre>
 
-// string output
+<p>OR raw string:</p>
+
+<pre><code class="language-php">
 Engine::output("Hello World");
 </code></pre>
+
+<p><b>Behavior:</b></p>
+<ul>
+  <li>If file exists → prints file content</li>
+  <li>If not → prints raw string</li>
+</ul>
 </div>
 
-<!-- EXPLODE -->
 <div class="card" id="explode">
 <span class="tag">FUNCTION</span>
 <h2>explode()</h2>
+
+<p>String splitter function.</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -200,17 +188,23 @@ $result = Engine::explode(",", "apple,banana,orange");
 
 print_r($result);
 </code></pre>
+
+<p><b>Output:</b></p>
+
+<pre><code>
+Array
+(
+  [0] => apple
+  [1] => banana
+  [2] => orange
+)
+</code></pre>
 </div>
 
 </div>
 
 <script>
 hljs.highlightAll();
-
-/* menu toggle */
-function toggleMenu(){
-  document.querySelector(".sidebar").classList.toggle("open");
-}
 </script>
 
 </body>
