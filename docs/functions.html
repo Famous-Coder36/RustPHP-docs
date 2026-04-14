@@ -24,15 +24,14 @@ body{
   position:fixed;
   background:#111a27;
   border-right:1px solid #1f2a3a;
-  padding:60px 20px 20px 20px; /* FIX: top space added */
+  padding:70px 20px 20px 20px; /* FIX: space for ☰ button */
   overflow-y:auto;
-  transition:0.3s;
 }
 
 .sidebar h2{
   color:#2ea6ff;
   margin:0;
-  padding-left:5px;
+  padding-left:8px;
 }
 
 .sidebar a{
@@ -41,17 +40,12 @@ body{
   color:#cbd5e1;
   text-decoration:none;
   border-radius:6px;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 
 .sidebar a:hover{
   background:#1b2a3d;
   color:white;
-}
-
-.sidebar a.active{
-  background:#1b2a3d;
-  color:#2ea6ff;
 }
 
 /* CONTENT */
@@ -69,6 +63,7 @@ body{
   margin-bottom:20px;
 }
 
+/* TAG */
 .tag{
   display:inline-block;
   padding:4px 10px;
@@ -79,44 +74,45 @@ body{
   font-weight:bold;
 }
 
+/* CODE FIX (MUHIM!) */
 pre{
   background:#0b1220;
   padding:15px;
   border-radius:10px;
-  overflow:auto;
+  overflow-x:auto;   /* FIX: horizontal scroll */
+  white-space:pre;   /* FIX: full code ko‘rinadi */
 }
 
-.title{
-  font-size:26px;
-  color:#2ea6ff;
-  margin-bottom:10px;
-}
-
-/* ☰ BUTTON */
+/* ☰ BUTTON FIX */
 .menu-btn{
   position:fixed;
-  top:15px;
-  left:15px;
+  top:12px;
+  left:12px;
   font-size:26px;
   background:#111a27;
   color:#2ea6ff;
   border:1px solid #1f2a3a;
   padding:6px 10px;
   border-radius:8px;
-  z-index:2000; /* FIX: above everything */
+  z-index:9999; /* FIX: always top */
   cursor:pointer;
-  display:none;
+}
+
+/* TITLE */
+.title{
+  font-size:26px;
+  color:#2ea6ff;
+  margin-bottom:10px;
 }
 
 /* MOBILE */
 @media (max-width:768px){
 
-  body{
-    display:block;
-  }
+  body{ display:block; }
 
   .sidebar{
     transform:translateX(-100%);
+    transition:0.3s;
     z-index:999;
   }
 
@@ -127,10 +123,6 @@ pre{
   .content{
     margin-left:0;
     padding:20px;
-  }
-
-  .menu-btn{
-    display:block;
   }
 }
 </style>
@@ -159,11 +151,10 @@ pre{
   <p>High-performance PHP extension powered by Rust engine.</p>
 </div>
 
+<!-- PRINTLN -->
 <div class="card" id="println">
 <span class="tag">FUNCTION</span>
 <h2>println()</h2>
-
-<p>Console output function</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -173,36 +164,42 @@ use RustPHP\Engine;
 
 Engine::println("Hello RustPHP");
 </code></pre>
-
 </div>
 
+<!-- OUTPUT -->
 <div class="card" id="output">
 <span class="tag">FUNCTION</span>
 <h2>output()</h2>
 
-<p>File yoki string output</p>
-
 <pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
+// file output
 Engine::output("hello.txt");
-</code></pre>
 
-<pre><code class="language-php">
+// string output
 Engine::output("Hello World");
 </code></pre>
-
 </div>
 
+<!-- EXPLODE -->
 <div class="card" id="explode">
 <span class="tag">FUNCTION</span>
 <h2>explode()</h2>
 
-<p>String → Array split</p>
-
 <pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
 $result = Engine::explode(",", "apple,banana,orange");
+
 print_r($result);
 </code></pre>
-
 </div>
 
 </div>
@@ -210,19 +207,10 @@ print_r($result);
 <script>
 hljs.highlightAll();
 
-/* MENU TOGGLE */
+/* menu toggle */
 function toggleMenu(){
   document.querySelector(".sidebar").classList.toggle("open");
 }
-
-/* ACTIVE LINK */
-const links = document.querySelectorAll(".sidebar a");
-
-links.forEach(link => {
-  if (link.href === window.location.href) {
-    link.classList.add("active");
-  }
-});
 </script>
 
 </body>
