@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RustPHP Functions</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui;
+  background:#0e1621;
+  color:#e6e6e6;
+  display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:260px;
+  height:100vh;
+  position:fixed;
+  background:#111a27;
+  border-right:1px solid #1f2a3a;
+  padding:20px;
+}
+
+.sidebar h2{
+  color:#2ea6ff;
+}
+
+.sidebar a{
+  display:block;
+  padding:10px;
+  color:#cbd5e1;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.sidebar a:hover{
+  background:#1b2a3d;
+  color:white;
+}
+
+/* CONTENT */
+.content{
+  margin-left:260px;
+  padding:30px;
+  width:100%;
+}
+
+.card{
+  background:#111a27;
+  border:1px solid #1f2a3a;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.tag{
+  display:inline-block;
+  padding:4px 10px;
+  background:#2ea6ff;
+  color:black;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+pre{
+  background:#0b1220;
+  padding:15px;
+  border-radius:10px;
+  overflow:auto;
+}
+
+/* TITLE WOW */
+.title{
+  font-size:28px;
+  color:#2ea6ff;
+  margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>🦀 RustPHP</h2>
+  <a href="index.html">Home</a>
+  <a href="#println">println</a>
+  <a href="#output">output</a>
+  <a href="#explode">explode</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<div class="card">
+<div class="title">RustPHP Functions</div>
+<p>High-performance PHP extension functions powered by Rust engine.</p>
+</div>
+
+<!-- PRINTLN -->
+<div class="card" id="println">
+<span class="tag">FUNCTION</span>
+<h2>println()</h2>
+
+<p>Console output function.</p>
+
+<pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
+Engine::println("Hello RustPHP");
+</code></pre>
+
+<p><b>Output:</b></p>
+
+<pre><code>
+Hello RustPHP
+</code></pre>
+</div>
+
+<!-- OUTPUT -->
+<div class="card" id="output">
+<span class="tag">FUNCTION</span>
+<h2>output()</h2>
+
+<p>File or raw output renderer.</p>
+
+<pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
+Engine::output("hello.txt");
+</code></pre>
+
+<p>OR raw string:</p>
+
+<pre><code class="language-php">
+Engine::output("Hello World");
+</code></pre>
+
+<p><b>Behavior:</b></p>
+<ul>
+  <li>If file exists → prints file content</li>
+  <li>If not → prints raw string</li>
+</ul>
+</div>
+
+<!-- EXPLODE -->
+<div class="card" id="explode">
+<span class="tag">FUNCTION</span>
+<h2>explode()</h2>
+
+<p>String splitter function.</p>
+
+<pre><code class="language-php">
+&lt;?php
+require "vendor/autoload.php";
+
+use RustPHP\Engine;
+
+$result = Engine::explode(",", "apple,banana,orange");
+
+print_r($result);
+</code></pre>
+
+<p><b>Output:</b></p>
+
+<pre><code>
+Array
+(
+  [0] => apple
+  [1] => banana
+  [2] => orange
+)
+</code></pre>
+</div>
+
+</div>
+
+<script>
+hljs.highlightAll();
+</script>
+
+</body>
+    </html>
