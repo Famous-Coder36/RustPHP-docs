@@ -24,14 +24,15 @@ body{
   position:fixed;
   background:#111a27;
   border-right:1px solid #1f2a3a;
-  padding:20px;
+  padding:60px 20px 20px 20px; /* FIX: top space added */
   overflow-y:auto;
   transition:0.3s;
 }
 
 .sidebar h2{
   color:#2ea6ff;
-  margin-top:0;
+  margin:0;
+  padding-left:5px;
 }
 
 .sidebar a{
@@ -85,16 +86,14 @@ pre{
   overflow:auto;
 }
 
-/* TITLE */
 .title{
   font-size:26px;
   color:#2ea6ff;
   margin-bottom:10px;
 }
 
-/* MENU BUTTON */
+/* ☰ BUTTON */
 .menu-btn{
-  display:none;
   position:fixed;
   top:15px;
   left:15px;
@@ -104,8 +103,9 @@ pre{
   border:1px solid #1f2a3a;
   padding:6px 10px;
   border-radius:8px;
-  z-index:1000;
+  z-index:2000; /* FIX: above everything */
   cursor:pointer;
+  display:none;
 }
 
 /* MOBILE */
@@ -159,7 +159,6 @@ pre{
   <p>High-performance PHP extension powered by Rust engine.</p>
 </div>
 
-<!-- PRINTLN -->
 <div class="card" id="println">
 <span class="tag">FUNCTION</span>
 <h2>println()</h2>
@@ -175,26 +174,15 @@ use RustPHP\Engine;
 Engine::println("Hello RustPHP");
 </code></pre>
 
-<p><b>Output:</b></p>
-
-<pre><code>
-Hello RustPHP
-</code></pre>
 </div>
 
-<!-- OUTPUT -->
 <div class="card" id="output">
 <span class="tag">FUNCTION</span>
 <h2>output()</h2>
 
-<p>File yoki string output qaytaradi</p>
+<p>File yoki string output</p>
 
 <pre><code class="language-php">
-&lt;?php
-require "vendor/autoload.php";
-
-use RustPHP\Engine;
-
 Engine::output("hello.txt");
 </code></pre>
 
@@ -202,36 +190,19 @@ Engine::output("hello.txt");
 Engine::output("Hello World");
 </code></pre>
 
-<p>👉 Agar file bo‘lsa: file content chiqaradi<br>
-👉 Agar string bo‘lsa: o‘zi chiqaradi</p>
 </div>
 
-<!-- EXPLODE -->
 <div class="card" id="explode">
 <span class="tag">FUNCTION</span>
 <h2>explode()</h2>
 
-<p>Stringni arrayga bo‘lish</p>
+<p>String → Array split</p>
 
 <pre><code class="language-php">
-&lt;?php
-require "vendor/autoload.php";
-
-use RustPHP\Engine;
-
 $result = Engine::explode(",", "apple,banana,orange");
-
 print_r($result);
 </code></pre>
 
-<pre><code>
-Array
-(
-  [0] => apple
-  [1] => banana
-  [2] => orange
-)
-</code></pre>
 </div>
 
 </div>
@@ -239,12 +210,12 @@ Array
 <script>
 hljs.highlightAll();
 
-/* menu toggle */
+/* MENU TOGGLE */
 function toggleMenu(){
   document.querySelector(".sidebar").classList.toggle("open");
 }
 
-/* active link highlight */
+/* ACTIVE LINK */
 const links = document.querySelectorAll(".sidebar a");
 
 links.forEach(link => {
