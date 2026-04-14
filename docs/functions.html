@@ -25,10 +25,13 @@ body{
   background:#111a27;
   border-right:1px solid #1f2a3a;
   padding:20px;
+  overflow-y:auto;
+  transition:0.3s;
 }
 
 .sidebar h2{
   color:#2ea6ff;
+  margin-top:0;
 }
 
 .sidebar a{
@@ -37,11 +40,17 @@ body{
   color:#cbd5e1;
   text-decoration:none;
   border-radius:6px;
+  margin-bottom:5px;
 }
 
 .sidebar a:hover{
   background:#1b2a3d;
   color:white;
+}
+
+.sidebar a.active{
+  background:#1b2a3d;
+  color:#2ea6ff;
 }
 
 /* CONTENT */
@@ -76,32 +85,78 @@ pre{
   overflow:auto;
 }
 
-/* TITLE WOW */
+/* TITLE */
 .title{
-  font-size:28px;
+  font-size:26px;
   color:#2ea6ff;
   margin-bottom:10px;
+}
+
+/* MENU BUTTON */
+.menu-btn{
+  display:none;
+  position:fixed;
+  top:15px;
+  left:15px;
+  font-size:26px;
+  background:#111a27;
+  color:#2ea6ff;
+  border:1px solid #1f2a3a;
+  padding:6px 10px;
+  border-radius:8px;
+  z-index:1000;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+  body{
+    display:block;
+  }
+
+  .sidebar{
+    transform:translateX(-100%);
+    z-index:999;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .content{
+    margin-left:0;
+    padding:20px;
+  }
+
+  .menu-btn{
+    display:block;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ☰ BUTTON -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
 <!-- SIDEBAR -->
 <div class="sidebar">
   <h2>🦀 RustPHP</h2>
+
   <a href="index.html">Home</a>
-  <a href="#println">println</a>
-  <a href="#output">output</a>
-  <a href="#explode">explode</a>
+  <a href="#println">println()</a>
+  <a href="#output">output()</a>
+  <a href="#explode">explode()</a>
 </div>
 
 <!-- CONTENT -->
 <div class="content">
 
 <div class="card">
-<div class="title">RustPHP Functions</div>
-<p>High-performance PHP extension functions powered by Rust engine.</p>
+  <div class="title">RustPHP Functions</div>
+  <p>High-performance PHP extension powered by Rust engine.</p>
 </div>
 
 <!-- PRINTLN -->
@@ -109,7 +164,7 @@ pre{
 <span class="tag">FUNCTION</span>
 <h2>println()</h2>
 
-<p>Console output function.</p>
+<p>Console output function</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -132,7 +187,7 @@ Hello RustPHP
 <span class="tag">FUNCTION</span>
 <h2>output()</h2>
 
-<p>File or raw output renderer.</p>
+<p>File yoki string output qaytaradi</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -143,17 +198,12 @@ use RustPHP\Engine;
 Engine::output("hello.txt");
 </code></pre>
 
-<p>OR raw string:</p>
-
 <pre><code class="language-php">
 Engine::output("Hello World");
 </code></pre>
 
-<p><b>Behavior:</b></p>
-<ul>
-  <li>If file exists → prints file content</li>
-  <li>If not → prints raw string</li>
-</ul>
+<p>👉 Agar file bo‘lsa: file content chiqaradi<br>
+👉 Agar string bo‘lsa: o‘zi chiqaradi</p>
 </div>
 
 <!-- EXPLODE -->
@@ -161,7 +211,7 @@ Engine::output("Hello World");
 <span class="tag">FUNCTION</span>
 <h2>explode()</h2>
 
-<p>String splitter function.</p>
+<p>Stringni arrayga bo‘lish</p>
 
 <pre><code class="language-php">
 &lt;?php
@@ -173,8 +223,6 @@ $result = Engine::explode(",", "apple,banana,orange");
 
 print_r($result);
 </code></pre>
-
-<p><b>Output:</b></p>
 
 <pre><code>
 Array
@@ -190,7 +238,21 @@ Array
 
 <script>
 hljs.highlightAll();
+
+/* menu toggle */
+function toggleMenu(){
+  document.querySelector(".sidebar").classList.toggle("open");
+}
+
+/* active link highlight */
+const links = document.querySelectorAll(".sidebar a");
+
+links.forEach(link => {
+  if (link.href === window.location.href) {
+    link.classList.add("active");
+  }
+});
 </script>
 
 </body>
-    </html>
+</html>
