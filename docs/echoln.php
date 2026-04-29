@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Method: Engine::explode – RustPHP</title>
+  <title>Method: Engine::echoln – RustPHP</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -310,7 +310,7 @@
   <span class="sep">/</span>
   <a href="methods.html">Methods</a>
   <span class="sep">/</span>
-  <span class="current">Engine::explode</span>
+  <span class="current">Engine::echoln</span>
 </nav>
 
 <div class="wrapper">
